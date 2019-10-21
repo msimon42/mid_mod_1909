@@ -1,6 +1,8 @@
 require 'minitest'
 require 'minitest/autorun'
+require 'pry'
 require_relative '../lib/vehicle'
+
 
 class VehicleTest < Minitest::Test
   def setup
@@ -34,10 +36,17 @@ class VehicleTest < Minitest::Test
 
   def test_passengers
     assert_equal [], @vehicle.passengers
-    @vehicle.add_passenger(@charle)
+    @vehicle.add_passenger(@charlie)
     @vehicle.add_passenger(@taylor)
     @vehicle.add_passenger(@jude)
-    assert_equal [@charle, @taylor, @jude], vehicle.passengers
+    assert_equal [@charlie, @taylor, @jude], @vehicle.passengers
+  end
+
+  def test_num_adults
+    @vehicle.add_passenger(@charlie)
+    @vehicle.add_passenger(@taylor)
+    @vehicle.add_passenger(@jude)
+    assert_equal 2, @vehicle.num_adults
   end
 
 end
